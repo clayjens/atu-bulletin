@@ -1,24 +1,103 @@
-// Don't forget to tell Prisma about your edits to this file using
-// `yarn rw prisma migrate dev` or `yarn rw prisma db push`.
-// `migrate` is like committing while `push` is for prototyping.
-// Read more about both here:
-// https://www.prisma.io/docs/orm/prisma-migrate
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native"]
+}
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = "native"
+model Event {
+  title       String   @db.VarChar(255)
+  description String?
+  endDate     DateTime
+  locationId  Int
+  startDate   DateTime
+  id          Int      @id @default(autoincrement())
+  Location    Location @relation(fields: [locationId], references: [id])
+  Pin         Pin[]
+  Report      Report[]
 }
 
-// Define your own datamodels here and run `yarn redwood prisma migrate dev`
-// to create migrations for them and apply to your dev DB.
-// TODO: Please remove the following example:
-model UserExample {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+model Location {
+  id         Int     @id @default(autoincrement())
+  address    String  @db.VarChar(255)
+  city       String  @db.VarChar(100)
+  state      String  @db.VarChar(100)
+  postalCode String  @db.VarChar(20)
+  country    String  @db.VarChar(100)
+  latitude   Float?
+  longitude  Float?
+  Event      Event[]
+}
+
+model News {
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(255)
+  publishDate DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime
+  authorId    Int
+  User        User     @relation(fields: [authorId], references: [id])
+  Report      Report[]
+}
+
+model Pin {
+  id      Int   @id @default(autoincrement())
+  userId  Int
+  eventId Int
+  Event   Event @relation(fields: [eventId], references: [id])
+  User    User  @relation(fields: [userId], references: [id])
+}
+
+model Preference {
+  id       Int    @id @default(autoincrement())
+  theme    Theme  @default(LIGHT)
+  fontSize Int    @default(12)
+  locale   String @default("en-US") @db.VarChar(10)
+  userId   Int    @unique
+  User     User   @relation(fields: [userId], references: [id])
+}
+
+model Report {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  reason    String   @db.Text
+
+  reportedUserId Int
+  reportedUser   User @relation(name: "ReportedUser", fields: [reportedUserId], references: [id])
+
+  reportingUserId Int
+  reportingUser   User @relation(name: "ReportingUser", fields: [reportingUserId], references: [id])
+
+  eventId Int?
+  event   Event? @relation(fields: [eventId], references: [id])
+
+  newsId Int?
+  news   News? @relation(fields: [newsId], references: [id])
+}
+
+model User {
+  clerkId        String      @unique @db.VarChar(255)
+  createdAt      DateTime    @default(now())
+  role           Role        @default(USER)
+  id             Int         @id @default(autoincrement())
+  news           News[]
+  pins           Pin[]
+  preference     Preference?
+  reportsAgainst Report[]    @relation(name: "ReportedUser")
+  reportsMade    Report[]    @relation(name: "ReportingUser")
+}
+
+enum Role {
+  USER
+  USER_CLUB
+  ADMIN
+  ADMIN_CLUB
+}
+
+enum Theme {
+  DARK
+  LIGHT
 }
