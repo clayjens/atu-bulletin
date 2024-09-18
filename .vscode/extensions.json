@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "mgmcdermott.vscode-language-babel",
+    "usernamehw.errorlens",
+    "dbaeumer.vscode-eslint",
+    "heybourn.headwind",
+    "csstools.postcss",
+    "esbenp.prettier-vscode",
+    "yoavbls.pretty-ts-errors",
+    "ofhumanbondage.react-proptypes-intellisense",
+    "bradlc.vscode-tailwindcss"
+  ]
+}
