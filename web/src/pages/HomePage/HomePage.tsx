@@ -8,6 +8,8 @@ import {
 import { Link, routes } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 
+import { Button } from 'src/components/ui/button'
+
 const HomePage = () => {
   return (
     <>
@@ -23,7 +25,9 @@ const HomePage = () => {
       </p>
 
       <SignedOut>
-        <SignInButton />
+        <SignInButton mode="modal">
+          <Button>Sign In</Button>
+        </SignInButton>
       </SignedOut>
 
       <SignedIn>
