@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
+import { Suspense } from "react";
 
 import AppNavbar from "@/components/app-navbar";
 import AppProviders from "@/components/app-providers";
@@ -41,7 +42,9 @@ export default function RootLayout({
         <div className="absolute inset-0 z-0 bg-black opacity-20"></div>
         <AppProviders>
           <AppNavbar />
-          <main className="m-4 flex-grow">{children}</main>
+          <main className="m-4 flex-grow">
+            <Suspense>{children}</Suspense>
+          </main>
         </AppProviders>
       </body>
     </html>
