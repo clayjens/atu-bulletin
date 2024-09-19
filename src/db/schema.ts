@@ -8,5 +8,8 @@ export const events = pgTable("event", {
   description: text("description"),
 });
 
-export const InsertEventSchema = createInsertSchema(events);
+export const InsertEventSchema = createInsertSchema(events).omit({
+  id: true,
+  slug: true,
+});
 export const SelectEventSchema = createSelectSchema(events);
