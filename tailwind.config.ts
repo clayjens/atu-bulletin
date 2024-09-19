@@ -5,16 +5,16 @@ const config: Config = {
   content: [
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {}
+    extend: {},
   },
   safelist: [
     "safelisted",
     {
-      pattern: /bg-(yellow|green|blue|indigo|purple|pink|red|orange)-(200)/
-    }
+      pattern: /bg-(yellow|green|blue|indigo|purple|pink|red|orange)-(200)/,
+    },
   ],
   darkMode: "class",
   plugins: [nextui()],

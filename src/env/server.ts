@@ -13,6 +13,7 @@ export const env = createEnv({
     POSTGRES_HOST: z.string(),
     POSTGRES_PASSWORD: z.string(),
     POSTGRES_DATABASE: z.string(),
+    WEBHOOK_SECRET: z.string(),
   },
   emptyStringAsUndefined: true,
   // eslint-disable-next-line n/no-process-env

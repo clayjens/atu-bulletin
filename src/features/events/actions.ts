@@ -46,3 +46,9 @@ async function isEventSlugUnique(slug: string) {
   });
   return result === undefined;
 }
+
+export async function getEvents() {
+  const events = await db.query.events.findMany();
+
+  return events;
+}

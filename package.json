@@ -30,6 +30,7 @@
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.33.0",
     "drizzle-zod": "^0.5.1",
+    "embla-carousel-react": "^8.3.0",
     "framer-motion": "^11.5.4",
     "jiti": "^1.21.6",
     "next": "14.2.12",
@@ -40,6 +41,7 @@
     "react-feather": "^2.0.10",
     "server": "link:@clerk/nextjs/server",
     "slugify": "^1.6.6",
+    "svix": "^1.35.0",
     "tailwind-merge": "^2.5.2",
     "zod": "^3.23.8"
   },

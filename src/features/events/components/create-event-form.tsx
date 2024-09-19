@@ -11,7 +11,7 @@ import { Button, Input, Textarea } from "@nextui-org/react";
 import { useFormState } from "react-dom";
 
 import { InsertEventSchema } from "@/db/schema";
-import { createEvent } from "@/features/event/actions";
+import { createEvent } from "@/features/events/actions";
 
 export default function CreateEventForm() {
   const [lastResult, action] = useFormState(createEvent, undefined);
@@ -27,28 +27,28 @@ export default function CreateEventForm() {
 
   return (
     <form action={action} {...getFormProps(form)}>
-      <div>
-        <Input
-          {...getInputProps(fields.title, { type: "text" })}
-          key={fields.title.key}
-          label="Title"
-          isRequired
-          description="Give your event a catchy title!"
-          isInvalid={!!fields.title.errors}
-          errorMessage={fields.title.errors?.join(", ")}
-        />
-        <Textarea
-          {...getTextareaProps(fields.description)}
-          key={fields.description.key}
-          label="Description"
-          description="Describe your event, what's it about?"
-          isInvalid={!!fields.description.errors}
-          errorMessage={fields.description.errors?.join(", ")}
-        />
-        <Button type="submit" className="w-full">
-          Submit
-        </Button>
-      </div>
+      <Input
+        {...getInputProps(fields.title, { type: "text" })}
+        key={fields.title.key}
+        label="Title"
+        isRequired
+        description="Give your event a catchy title!"
+        isInvalid={!!fields.title.errors}
+        errorMessage={fields.title.errors?.join(", ")}
+        className="bg-transparent"
+        variant="faded"
+      />
+      <Textarea
+        {...getTextareaProps(fields.description)}
+        key={fields.description.key}
+        label="Description"
+        description="Describe your event, what's it about?"
+        isInvalid={!!fields.description.errors}
+        errorMessage={fields.description.errors?.join(", ")}
+      />
+      <Button type="submit" className="w-full" color="primary">
+        Submit
+      </Button>
     </form>
   );
 }

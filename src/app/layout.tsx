@@ -35,11 +35,10 @@ export default function RootLayout({
       </head>
       <body
         className={cn(
-          "h-screen w-screen overflow-auto bg-[url(/corkboard.jpg)] bg-cover bg-repeat antialiased",
+          "h-screen w-screen overflow-auto antialiased",
           lato.variable
         )}
       >
-        <div className="absolute inset-0 z-0 bg-black opacity-20"></div>
         <AppProviders>
           <AppNavbar />
           <main className="m-4 flex-grow">

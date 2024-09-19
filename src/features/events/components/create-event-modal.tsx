@@ -10,15 +10,28 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 
-import CreateEventForm from "./create-event-form";
+import CreateEventForm from "@/features/events/components/create-event-form";
+import { getRandomRotation, getRandomStyle } from "@/utils/sticky-note-helper";
 
 export default function CreateEventModal() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const randomStyle = getRandomStyle();
+  const randomRotation = getRandomRotation();
 
   return (
     <>
-      <Button onPress={onOpen}>Create Event</Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="opaque">
+      <Button onPress={onOpen} color="primary">
+        Create Event
+      </Button>
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        backdrop="opaque"
+        className={randomStyle.base}
+        style={{
+          transform: `rotate(${randomRotation}deg)`,
+        }}
+      >
         <ModalContent>
           {() => (
             <>

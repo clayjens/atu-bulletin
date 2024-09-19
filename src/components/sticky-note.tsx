@@ -8,15 +8,20 @@ import {
 
 interface StickyNoteProps {
   children: React.ReactNode;
+  className?: string;
   style: StickyNoteStyle;
 }
 
-export default function StickyNote({ children, style }: StickyNoteProps) {
+export default function StickyNote({
+  children,
+  style,
+  className,
+}: StickyNoteProps) {
   const rotation = getRandomRotation();
 
   return (
     <Card
-      className={cn("max-w-md", style.base)}
+      className={cn(`${className}`, style.base)}
       style={{
         transform: `rotate(${rotation}deg)`,
       }}
