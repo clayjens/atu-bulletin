@@ -1,36 +1,12 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Placeholder
 
-## Getting Started
+This project is built using [NextJS](https://nextjs.org/) along with serveral dependencies for UI, validation, database interactions, authentication/authorization, and more.
 
-First, run the development server:
+## Dependencies
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [@clerk/nextjs](https://www.npmjs.com/package/@clerk/nextjs) provides user auth and session management with [Clerk](https://clerk.com/) for Next.js applications.
+- [@conform-to/react](https://www.npmjs.com/package/@conform-to/react) & [@conform-to/zod](https://www.npmjs.com/package/@conform-to/zod) provides validation management for React forms using [Zod](https://zod.dev/) schemas.
+- [@nextui/react](https://www.npmjs.com/package/@nextui-org/react) is a modern, beautiful and accessible React UI library, see [NextUI.org](https://nextui.org/).
+- [@t3-oss/env-core](https://www.npmjs.com/package/@t3-oss/env-core) manages client-side and server-side environment variables in a type-safe way.
+- [drizzle-orm](https://www.npmjs.com/package/drizzle-orm) is a lightweight TypeScript-first [ORM](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping) for working with databases, see [Drizzle](https://orm.drizzle.team/)
+- [drizzle-zod](https://www.npmjs.com/packages/drizzle-zod) integrates Drizzle ORM with Zod for schema validation at the database level.
