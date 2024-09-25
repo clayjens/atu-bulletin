@@ -5,8 +5,8 @@ import { eq } from "drizzle-orm";
 import { Webhook } from "svix";
 
 import { db } from "@/db";
-import { preferences, users } from "@/db/schema";
-import { env } from "@/env/server";
+import { user } from "@/db/schema";
+import env from "@/env";
 
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = env.WEBHOOK_SECRET;
@@ -41,29 +41,31 @@ export async function POST(req: Request) {
   }
 
   if (evt.type === "user.created") {
-    const [user] = await db
-      .insert(users)
+    const [createdUser] = await db
+      .insert(user)
       .values({
         clerkId: evt.data.id,
-        updatedAt: new Date(),
+        updatedAt: new Date().toString(),
       })
       .returning();
 
-    await db.insert(preferences).values({
-      userId: user.id,
-      theme: "light",
-    });
+    console.log(createdUser);
+
+    // await db.insert(preferences).values({
+    //   userId: user.id,
+    //   theme: "light",
+    // });
   }
 
   if (evt.type === "user.updated") {
     await db
-      .update(users)
-      .set({ updatedAt: new Date() })
-      .where(eq(users.clerkId, evt.data.id));
+      .update(user)
+      .set({ updatedAt: new Date().toString() })
+      .where(eq(user.clerkId, evt.data.id));
   }
 
   if (evt.type === "user.deleted" && evt.data.id) {
-    await db.delete(users).where(eq(users.clerkId, evt.data.id));
+    await db.delete(user).where(eq(user.clerkId, evt.data.id));
   }
 
   return new Response("", { status: 200 });
