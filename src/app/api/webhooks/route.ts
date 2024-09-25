@@ -1,12 +1,10 @@
 import { headers } from "next/headers";
 
 import { WebhookEvent } from "@clerk/nextjs/server";
-import { eq } from "drizzle-orm";
 import { Webhook } from "svix";
 
-import { db } from "@/db";
-import { user } from "@/db/schema";
 import env from "@/env";
+import { removeUserFromDb, syncUserToDb } from "@/features/user/actions";
 
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = env.WEBHOOK_SECRET;
@@ -35,38 +33,22 @@ export async function POST(req: Request) {
     }) as WebhookEvent;
   } catch (err) {
     console.error("Error verifying webhook:", err);
-    return new Response("Error occured -- invalid svix headers", {
+    return new Response("Error occured", {
       status: 400,
     });
   }
 
-  if (evt.type === "user.created") {
-    const [createdUser] = await db
-      .insert(user)
-      .values({
-        clerkId: evt.data.id,
-        updatedAt: new Date().toString(),
-      })
-      .returning();
+  if (evt.type === "user.created" || evt.type === "user.updated") {
+    const user = await syncUserToDb(evt.data);
 
-    console.log(createdUser);
-
-    // await db.insert(preferences).values({
-    //   userId: user.id,
-    //   theme: "light",
-    // });
-  }
-
-  if (evt.type === "user.updated") {
-    await db
-      .update(user)
-      .set({ updatedAt: new Date().toString() })
-      .where(eq(user.clerkId, evt.data.id));
+    return new Response(JSON.stringify(user), { status: 201 });
   }
 
   if (evt.type === "user.deleted" && evt.data.id) {
-    await db.delete(user).where(eq(user.clerkId, evt.data.id));
+    await removeUserFromDb(evt.data.id);
+
+    return new Response("", { status: 204 });
   }
 
-  return new Response("", { status: 200 });
+  return new Response("", { status: 202 });
 }

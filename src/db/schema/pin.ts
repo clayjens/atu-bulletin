@@ -1,14 +1,14 @@
 import { relations } from "drizzle-orm";
-import { integer, pgTable, timestamp } from "drizzle-orm/pg-core";
+import { integer, pgTable, timestamp, varchar } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 import event from "./event";
 import user from "./user";
 
 const pin = pgTable("pins", {
-  userId: integer("user_id")
+  userId: varchar("user_id")
     .notNull()
-    .references(() => user.id),
+    .references(() => user.clerkId),
   eventId: integer("event_id")
     .notNull()
     .references(() => event.id),
@@ -24,7 +24,7 @@ export const selectPinSchema = createSelectSchema(pin);
 export const pinRelations = relations(pin, ({ one }) => ({
   user: one(user, {
     fields: [pin.userId],
-    references: [user.id],
+    references: [user.clerkId],
   }),
   event: one(event, {
     fields: [pin.eventId],

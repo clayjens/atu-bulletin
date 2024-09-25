@@ -16,9 +16,9 @@ const event = pgTable("events", {
   title: varchar("title", { length: 255 }).notNull().unique(),
   description: varchar("description", { length: 512 }),
   slug: varchar("slug", { length: 512 }).notNull().unique(),
-  hostId: integer("host_id")
+  hostId: varchar("host_id")
     .notNull()
-    .references(() => user.id),
+    .references(() => user.clerkId),
   locationId: integer("location_id")
     .notNull()
     .references(() => location.id),
@@ -40,7 +40,7 @@ export const selectEventSchema = createSelectSchema(event);
 export const eventRelations = relations(event, ({ one }) => ({
   host: one(user, {
     fields: [event.hostId],
-    references: [user.id],
+    references: [user.clerkId],
   }),
   location: one(location, {
     fields: [event.locationId],

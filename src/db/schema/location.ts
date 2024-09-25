@@ -18,7 +18,7 @@ export const insertLocationSchema = createInsertSchema(location).omit({
 export const selectLocationSchema = createSelectSchema(location);
 
 export const locationRelations = relations(location, ({ many }) => ({
-  events: many(event, { relationName: "location_events" }),
+  events: many(event),
 }));
 
 export default location;
