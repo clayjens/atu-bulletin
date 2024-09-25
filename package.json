@@ -10,15 +10,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier src/ --write",
     "prepare": "husky",
     "db": "drizzle-kit",
-    "db:studio": "drizzle-kit studio",
-    "db:dbml": "tsx src/db/dbml.ts"
+    "db:visualize": "tsx src/db/dbml.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.6.0",
