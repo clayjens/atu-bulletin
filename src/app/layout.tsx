@@ -27,8 +27,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Telemetry>
-      <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
+      <Telemetry>
         <head>
           <link
             rel="icon"
@@ -52,7 +52,7 @@ export default function RootLayout({
             </main>
           </AppProviders>
         </body>
-      </html>
-    </Telemetry>
+      </Telemetry>
+    </html>
   );
 }
