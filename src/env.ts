@@ -13,7 +13,7 @@ const env = createEnv({
     POSTGRES_PASSWORD: z.string(),
     POSTGRES_DATABASE: z.string(),
     CLERK_SECRET_KEY: z.string().startsWith("sk_"),
-    WEBHOOK_SECRET: z.string().startsWith("whsec_"),
+    CLERK_WEBHOOK_SECRET: z.string().startsWith("whsec_"),
   },
   client: {
     NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: z.string(),
@@ -30,7 +30,7 @@ const env = createEnv({
     POSTGRES_PASSWORD: process.env.POSTGRES_PASSWORD,
     POSTGRES_DATABASE: process.env.POSTGRES_DATABASE,
     CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
-    WEBHOOK_SECRET: process.env.WEBHOOK_SECRET,
+    CLERK_WEBHOOK_SECRET: process.env.CLERK_WEBHOOK_SECRET,
     NEXT_PUBLIC_GOOGLE_MAPS_API_KEY:
       process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
     NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID: process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID,

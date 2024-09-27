@@ -4,8 +4,10 @@ import { useRouter } from "next/navigation";
 
 import { ClerkProvider } from "@clerk/nextjs";
 import { NextUIProvider } from "@nextui-org/react";
-import { APIProvider } from "@vis.gl/react-google-maps";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { APIProvider as GoogleMapsAPIProvider } from "@vis.gl/react-google-maps";
+import { ThemeProvider } from "next-themes";
+
+import env from "@/env";
 
 export default function AppProviders({
   children,
@@ -13,19 +15,17 @@ export default function AppProviders({
   const router = useRouter();
 
   return (
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     <NextUIProvider
-      // @ts-expect-error not using next router
       navigate={router.push}
       className="flex h-full w-full flex-col"
     >
-      <NextThemesProvider attribute="class">
-        <ClerkProvider>
-          <APIProvider apiKey="AIzaSyDGJ08Gn2QHDjO1t0i8YFW7_Fc9P-C4H24">
+      <ThemeProvider attribute="class" enableSystem disableTransitionOnChange>
+        <ClerkProvider publishableKey={env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
+          <GoogleMapsAPIProvider apiKey={env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}>
             {children}
-          </APIProvider>
+          </GoogleMapsAPIProvider>
         </ClerkProvider>
-      </NextThemesProvider>
+      </ThemeProvider>
     </NextUIProvider>
   );
 }

@@ -24,6 +24,8 @@ const event = pgTable("events", {
     .references(() => location.id),
   createdAt: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),
+  startsAt: timestamp("starts_at", { mode: "string" }).notNull(),
+  endsAt: timestamp("ends_at", { mode: "string" }).notNull(),
 });
 
 export const insertEventSchema = createInsertSchema(event, {}).omit({

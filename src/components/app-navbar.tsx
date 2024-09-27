@@ -20,7 +20,7 @@ import {
 import { routes } from "@/config/routes";
 
 import AppLogo from "./app-logo";
-import { ThemeToggle } from "./theme-toggle";
+import { ThemeToggle } from "./app-theme-toggle";
 
 export default function AppNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,6 +56,8 @@ export default function AppNavbar() {
       </NavbarContent>
 
       <NavbarContent justify="end">
+        <ThemeToggle />
+
         <SignedOut>
           <NavbarItem>
             <SignInButton mode="modal">
@@ -72,9 +74,6 @@ export default function AppNavbar() {
       </NavbarContent>
 
       <NavbarMenu>
-        <NavbarMenuItem>
-          <ThemeToggle />
-        </NavbarMenuItem>
         {routes.map((route) => (
           <NavbarMenuItem key={`${route.label}-${route.href}`}>
             <NavbarLink

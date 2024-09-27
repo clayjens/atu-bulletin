@@ -2,7 +2,7 @@ import { CircularProgress } from "@nextui-org/react";
 
 export default function Loading() {
   return (
-    <div className="flex h-[100%] items-center justify-center">
+    <div className="flex h-full items-center justify-center">
       <CircularProgress
         aria-label="Loading"
         classNames={{

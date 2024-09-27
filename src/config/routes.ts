@@ -8,7 +8,8 @@ export const routes: Route[] = [
   { label: "Home", href: "/" },
   { label: "Profile", href: "/profile", isProtected: true },
   { label: "Events", href: "/events" },
-  { label: "News", href: "/News" },
+  { label: "News", href: "/news" },
+  { label: "Map", href: "/map" },
 ];
 
 export const protectedRoutes = routes.filter((route) => route.isProtected);

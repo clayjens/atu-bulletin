@@ -7,7 +7,7 @@ import env from "@/env";
 import { removeUserFromDb, syncUserToDb } from "@/features/user/actions";
 
 export async function POST(req: Request) {
-  const WEBHOOK_SECRET = env.WEBHOOK_SECRET;
+  const WEBHOOK_SECRET = env.CLERK_WEBHOOK_SECRET;
 
   const headerPayload = headers();
   const svix_id = headerPayload.get("svix-id");
