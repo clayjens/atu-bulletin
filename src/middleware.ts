@@ -1,14 +1,15 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-import { protectedRoutes } from "./config/routes";
+import { publicRoutes } from "./config/routes";
 
-const isProtectedRoute = createRouteMatcher([
-  ...protectedRoutes.map((route) => route.href),
-  "/admin",
+const isPublicRoute = createRouteMatcher([
+  ...publicRoutes.map((route) => route.href),
 ]);
 
 export default clerkMiddleware((auth, req) => {
-  if (isProtectedRoute(req)) auth().protect();
+  if (!isPublicRoute(req)) {
+    auth().protect();
+  }
 });
 
 export const config = {

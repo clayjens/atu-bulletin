@@ -1,16 +1,16 @@
 type Route = {
   label: string;
   href: string;
-  isProtected?: boolean;
+  isPublic?: boolean;
 };
 
 export const routes: Route[] = [
   { label: "Home", href: "/" },
-  { label: "Profile", href: "/profile", isProtected: true },
+  { label: "Profile", href: "/profile" },
   { label: "Events", href: "/events" },
   { label: "News", href: "/news" },
   { label: "Informational", href: "/informational" },
   { label: "Map", href: "/map" },
 ];
 
-export const protectedRoutes = routes.filter((route) => route.isProtected);
+export const publicRoutes = routes.filter((route) => route.isPublic);

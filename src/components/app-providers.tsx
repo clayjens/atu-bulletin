@@ -2,12 +2,13 @@
 
 import { useRouter } from "next/navigation";
 
-import { ClerkProvider } from "@clerk/nextjs";
 import { NextUIProvider } from "@nextui-org/react";
 import { APIProvider as GoogleMapsAPIProvider } from "@vis.gl/react-google-maps";
 import { ThemeProvider } from "next-themes";
 
 import env from "@/env";
+
+import CustomClerkProvider from "./providers/custom-clerk-provider";
 
 export default function AppProviders({
   children,
@@ -20,11 +21,11 @@ export default function AppProviders({
       className="flex h-full w-full flex-col"
     >
       <ThemeProvider attribute="class" enableSystem disableTransitionOnChange>
-        <ClerkProvider publishableKey={env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
+        <CustomClerkProvider>
           <GoogleMapsAPIProvider apiKey={env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}>
             {children}
           </GoogleMapsAPIProvider>
-        </ClerkProvider>
+        </CustomClerkProvider>
       </ThemeProvider>
     </NextUIProvider>
   );
