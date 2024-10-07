@@ -43,6 +43,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       >
         <AppProviders>
           <AppNavbar />
+
           <main className="m-4 flex-grow">
             <Suspense fallback={<Loading />}>{children}</Suspense>
           </main>
