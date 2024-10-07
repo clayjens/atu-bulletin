@@ -36,7 +36,7 @@ export default function AppNavbar() {
         <Link href="/">
           <NavbarBrand>
             <AppLogo />
-            <p className="font-bold text-inherit">The Placeholder</p>
+            <p className="font-bold text-inherit">ATU Bulletin</p>
           </NavbarBrand>
         </Link>
       </NavbarContent>
