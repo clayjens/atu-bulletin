@@ -9,6 +9,7 @@ export const routes: Route[] = [
   { label: "Profile", href: "/profile", isProtected: true },
   { label: "Events", href: "/events" },
   { label: "News", href: "/news" },
+  { label: "Informational", href: "/informational" },
   { label: "Map", href: "/map" },
 ];
 
