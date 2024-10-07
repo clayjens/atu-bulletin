@@ -17,7 +17,7 @@ export default function AppNavbarAuthSection() {
         </NavbarItem>
       </SignedOut>
       <SignedIn>
-        <UserButton />
+        <UserButton userProfileMode="navigation" userProfileUrl="/profile" />
       </SignedIn>
     </NavbarContent>
   );

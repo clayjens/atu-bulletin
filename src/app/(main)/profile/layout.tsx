@@ -3,10 +3,5 @@ interface ProfileLayoutProps {
 }
 
 export default function ProfileLayout({ children }: ProfileLayoutProps) {
-  return (
-    <>
-      <h1>Profile Layout</h1>
-      {children}
-    </>
-  );
+  return <div className="flex items-center justify-center">{children}</div>;
 }
