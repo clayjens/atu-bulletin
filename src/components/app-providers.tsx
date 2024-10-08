@@ -3,12 +3,10 @@
 import { useRouter } from "next/navigation";
 
 import { NextUIProvider } from "@nextui-org/react";
-import { APIProvider as GoogleMapsAPIProvider } from "@vis.gl/react-google-maps";
 import { ThemeProvider } from "next-themes";
 
-import env from "@/env";
-
 import CustomClerkProvider from "./providers/custom-clerk-provider";
+import CustomMapProvider from "./providers/custom-map-provider";
 
 export default function AppProviders({
   children,
@@ -22,9 +20,7 @@ export default function AppProviders({
     >
       <ThemeProvider attribute="class" enableSystem disableTransitionOnChange>
         <CustomClerkProvider>
-          <GoogleMapsAPIProvider apiKey={env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}>
-            {children}
-          </GoogleMapsAPIProvider>
+          <CustomMapProvider>{children}</CustomMapProvider>
         </CustomClerkProvider>
       </ThemeProvider>
     </NextUIProvider>
