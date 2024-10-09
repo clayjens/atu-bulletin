@@ -3,10 +3,10 @@ import React, { useEffect } from "react";
 import { useMap } from "@vis.gl/react-google-maps";
 
 interface Props {
-  place: google.maps.places.PlaceResult | null;
+  location: google.maps.places.PlaceResult | null;
 }
 
-const MapHandler = ({ place }: Props) => {
+const MapHandler = ({ location: place }: Props) => {
   const map = useMap();
 
   useEffect(() => {

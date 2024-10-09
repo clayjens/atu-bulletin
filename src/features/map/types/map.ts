@@ -11,3 +11,9 @@ export type MapConfig = {
   mapType?: MapType;
   styles?: google.maps.MapTypeStyle[];
 };
+
+export type CustomMarker = {
+  zIndex: number;
+  id: string;
+  position: google.maps.LatLngLiteral;
+};
